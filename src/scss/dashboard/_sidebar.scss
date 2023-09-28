@@ -1,0 +1,112 @@
+@use "base/variables" as v;
+@use "base/mixins" as m;
+
+.sidebar {
+  opacity: 0;
+  height: 0;
+  padding: 0rem;
+  transition: all ease 300ms;
+  overflow: hidden;
+
+  @include m.tablet {
+    height: 100%;
+    opacity: 1;
+    padding: 2rem;
+    background-color: v.$indigo;
+  }
+
+  background-color: v.$indigo;
+
+  &.mostrar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 100%;
+    opacity: 1;
+    padding: 2rem;
+    background-color: rgba(0, 0, 0, 0.95);
+    @include m.tablet {
+      display: none;
+    }
+  }
+
+  &.ocultar {
+    opacity: 0;
+  }
+
+  .contenedor-sidebar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    h2 {
+      color: v.$blanco;
+      margin: 0;
+      text-align: center;
+    }
+
+    .cerrar-menu {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      width: 2rem;
+      height: 2rem;
+
+      img:hover {
+        cursor: pointer;
+      }
+
+      @include m.tablet {
+        display: none;
+      }
+    }
+  }
+
+  .sidebar-nav {
+    margin-top: 5rem;
+
+    a {
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+      justify-content: center;
+      margin-bottom: 5rem;
+      padding: 2rem;
+      color: v.$blanco;
+      transition-property: background-color;
+      transition-duration: 300ms;
+      font-weight: bold;
+      font-size: 1.5rem;
+      text-transform: uppercase;
+
+      &:hover,
+      &.activo {
+        background-color: darken(v.$indigo, 20%);
+        border-radius: 0.5rem;
+      }
+    }
+
+    @include m.tablet {
+      a {
+        display: block;
+        margin-bottom: 1.5rem;
+        padding: 0.7rem;
+        font-size: 1.2rem;
+      }
+    }
+  }
+
+  .cerrar-sesion-mobile {
+    margin-top: 10rem;
+    .cerrar-sesion {
+      @include m.boton(v.$indigo, v.$blanco);
+    }
+
+    @include m.tablet {
+      display: none;
+    }
+  }
+}
